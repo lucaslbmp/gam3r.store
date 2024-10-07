@@ -6,12 +6,14 @@ import React from "react";
 import Image from "next/image";
 import { IconShoppingCartPlus } from "@tabler/icons-react";
 import NotaReview from "../shared/NotaReview";
+import useCarrinho from "@/data/hooks/useCarrinho";
 
 interface ProdutoItemProps {
   produto: Produto;
 }
 
 const ProdutoItem = ({ produto }: ProdutoItemProps) => {
+  const { adicionarItem } = useCarrinho();
   return (
     <Link
       href={`/produto/${produto.id}`}
@@ -49,7 +51,7 @@ const ProdutoItem = ({ produto }: ProdutoItemProps) => {
           className="flex justify-center items-center gap-2 h-8 bg-violet-700 hover:border-2 border-emerald-500 rounded-full"
           onClick={(e) => {
             e.preventDefault();
-            // adicionarItem(props.produto)
+            adicionarItem(produto);
           }}
         >
           <IconShoppingCartPlus size={20} />
